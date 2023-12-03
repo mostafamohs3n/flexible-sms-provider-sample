@@ -1,6 +1,6 @@
 <?php
 
-use App\Services\Sms4JawalyService;
+use App\Services\Sms\Sms4JawalyService;
 
 return [
     //general config

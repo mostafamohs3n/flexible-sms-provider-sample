@@ -1,8 +1,9 @@
 <?php
 
-namespace App\Services;
+namespace App\Services\Sms;
 
 use App\Interfaces\SmsProvider;
+use App\Services\HttpRequestService;
 use Illuminate\Support\Facades\Log;
 
 class Sms4JawalyService implements SmsProvider

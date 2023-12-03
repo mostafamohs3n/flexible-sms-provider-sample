@@ -27,15 +27,10 @@ class SMSController extends Controller
             return redirect()->back()->withInput()->with('error', $e->getMessage());
         }
 
-        if($this->smsProvider->send("Testing2 -Mostafa", "966501569668")){
+        if($this->smsProvider->send($request->input('message'), $request->input('phoneNumber'))){
             return redirect()->back()->withInput()->with('success', "SMS Sent successfully!");
         }else{
             return redirect()->back()->withInput()->with('error', "Failed to send SMS, please contact administrators.");
         }
-    }
-
-    public function test()
-    {
-
     }
 }
