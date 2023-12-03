@@ -51,7 +51,7 @@ class Sms4JawalyService implements SmsProvider
                 $headers
             );
             $responseJson = $response->json();
-            if($this->isRequestSuccessful($response)){
+            if ($this->isRequestSuccessful($response)) {
                 //@TODO: Maybe log in database.
                 Log::channel('sms')->info(sprintf('[%s:%s] Message sent successfully.', __CLASS__, __FUNCTION__), [
                     'message' => $message,
@@ -59,8 +59,9 @@ class Sms4JawalyService implements SmsProvider
                     'sender' => $this->sender,
                 ]);
                 return true;
-            }else{
-                Log::channel('sms')->error(sprintf('[%s:%s] Something went wrong while sending a message.', __CLASS__, __FUNCTION__), [
+            } else {
+                Log::channel('sms')->error(sprintf('[%s:%s] Something went wrong while sending a message.', __CLASS__,
+                    __FUNCTION__), [
                     'message' => $message,
                     'phone_number' => $phoneNumber,
                     'sender' => $this->sender,
@@ -80,6 +81,16 @@ class Sms4JawalyService implements SmsProvider
     }
 
     /**
+     * @return string
+     */
+    public function getAuth(): string
+    {
+        $apiKey = config('sms.4jawaly.apiKey');
+        $apiSecret = config('sms.4jawaly.apiSecret');
+        return 'Basic '.base64_encode($apiKey.':'.$apiSecret);
+    }
+
+    /**
      * @param $response
      * @return bool
      */
@@ -90,15 +101,5 @@ class Sms4JawalyService implements SmsProvider
             $response->successful()
             && $responseJson['code'] == 200
             && empty($responseJson['messages'][0]['err_text']);
-    }
-
-    /**
-     * @return string
-     */
-    private function getAuth(): string
-    {
-        $apiKey = config('sms.4jawaly.apiKey');
-        $apiSecret = config('sms.4jawaly.apiSecret');
-        return 'Basic ' . base64_encode($apiKey.':'.$apiSecret);
     }
 }
