@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\SMSController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -14,5 +15,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('sms.create');
 });
+
+Route::fallback(function (){
+    return redirect()->route('sms.create');
+});
+
+
+Route::resource('/sms', SMSController::class)->only(['create', 'store']);
