@@ -14,20 +14,20 @@
 </head>
 <body class="antialiased">
 <div
-    class="relative sm:justify-center sm:items-center min-h-screen bg-dots-darker bg-center bg-gray-100 dark:bg-dots-lighter dark:bg-gray-900 selection:bg-red-500 selection:text-white">
+    class="relative sm:justify-center sm:items-center min-h-screen bg-dots-darker bg-center bg-gray-100 selection:bg-red-500 selection:text-white">
     @if (Route::has('login'))
         <div class="sm:fixed sm:top-0 sm:right-0 p-6 text-right z-10">
             @auth
                 <a href="{{ url('/home') }}"
-                   class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Home</a>
+                   class="font-semibold text-gray-600 hover:text-gray-900 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Home</a>
             @else
                 <a href="{{ route('login') }}"
-                   class="font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Log
+                   class="font-semibold text-gray-600 hover:text-gray-900 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Log
                     in</a>
 
                 @if (Route::has('register'))
                     <a href="{{ route('register') }}"
-                       class="ml-4 font-semibold text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Register</a>
+                       class="ml-4 font-semibold text-gray-600 hover:text-gray-900 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">Register</a>
                 @endif
             @endauth
         </div>
@@ -38,10 +38,10 @@
         </div>
         <div class="mt-4 w-full">
             <div
-                class="w-full p-6 bg-white dark:bg-gray-800/50 dark:bg-gradient-to-bl from-gray-700/50 via-transparent dark:ring-1 dark:ring-inset dark:ring-white/5 rounded-lg shadow-2xl shadow-gray-500/20 dark:shadow-none motion-safe:hover:scale-[1.01] transition-all duration-250 focus:outline focus:outline-2 focus:outline-red-500">
+                class="w-full p-6 bg-white from-gray-700/50 via-transparent rounded-lg shadow-2xl shadow-gray-500/20 motion-safe:hover:scale-[1.01] transition-all duration-250 focus:outline focus:outline-2 focus:outline-red-500">
                 <div>
 
-                    <h2 class="mt-6 text-xl font-semibold text-gray-900 dark:text-white">Send SMS</h2>
+                    <h2 class="mt-6 text-xl font-semibold text-gray-900">Send SMS</h2>
                     @if(session()->has('error'))
                         <div class="mt-4 bg-orange-100 border-l-4 border-orange-500 text-orange-700 p-4"
                              role="alert">
@@ -62,25 +62,25 @@
                         <div class="w-full">
                             <div class="mt-4">
                                 <label for="phoneNumber"
-                                       class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
+                                       class="block mb-2 text-sm font-medium text-gray-900">
                                     Phone Number
                                 </label>
                                 <input name="phoneNumber" type="text" id="phoneNumber"
-                                       class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500"
+                                       class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-purple-500 focus:border-purple-500 block w-full p-2.5"
                                        placeholder="966000000" required
                                 />
                             </div>
                             <div class="mt-4">
                                 <label for="message"
-                                       class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your
+                                       class="block mb-2 text-sm font-medium text-gray-900">Your
                                     message</label>
                                 <textarea name="message" id="message" rows="4"
-                                          class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-purple-500 focus:border-purple-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-purple-500 dark:focus:border-purple-500"
+                                          class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-purple-500 focus:border-purple-500"
                                           placeholder="Write your thoughts here..."></textarea>
                             </div>
                             <div class="mt-4">
                                 <button type="submit"
-                                        class="text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-purple-600 dark:hover:bg-purple-700 dark:focus:ring-purple-800">
+                                        class="text-white bg-purple-700 hover:bg-purple-800 focus:ring-4 focus:outline-none focus:ring-purple-300 font-medium rounded-lg text-sm px-4 py-2">
                                     Send Message
                                 </button>
                             </div>
@@ -90,10 +90,10 @@
             </div>
         </div>
         <div class="flex justify-center mt-16 px-0 sm:items-center sm:justify-between">
-            <div class="text-center text-sm text-gray-500 dark:text-gray-400 sm:text-left">
+            <div class="text-center text-sm text-gray-500 sm:text-left">
                 <div class="flex items-center gap-4">
                     <a href="https://sllm.sa"
-                       class="group inline-flex items-center hover:text-gray-700 dark:hover:text-white focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">
+                       class="group inline-flex items-center hover:text-gray-700 focus:outline focus:outline-2 focus:rounded-sm focus:outline-red-500">
                         <img src="https://sllm.sa/sllm.png" width="80" alt="sllm.sa"/>
                         sllm.sa
                     </a>
