@@ -18,7 +18,7 @@ class OtpController extends Controller
     {
         $user = User::find(1);
         dump(
-            $this->otpRequestService->request($user, OtpTypeEnum::SMS)
+            $this->otpRequestService->request($user, OtpTypeEnum::EMAIL)
         );
     }
 }
