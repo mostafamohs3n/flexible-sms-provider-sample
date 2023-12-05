@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\OtpController;
 use App\Http\Controllers\SMSController;
 use Illuminate\Support\Facades\Route;
 
@@ -24,3 +25,5 @@ Route::fallback(function (){
 
 
 Route::resource('/sms', SMSController::class)->only(['create', 'store']);
+
+Route::get('/otp', [OtpController::class, 'store']);
