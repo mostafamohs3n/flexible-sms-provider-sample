@@ -4,11 +4,9 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Auth\LoginRequest;
-use App\Http\Requests\Auth\OtpRequest;
 use App\Models\User;
-use App\Providers\RouteServiceProvider;
-use Illuminate\Contracts\Foundation\Application;
-use Illuminate\Contracts\View\Factory;
+use App\OtpTypeEnum;
+use App\Services\OtpRequestService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -17,6 +15,12 @@ use Illuminate\View\View;
 
 class AuthenticatedSessionController extends Controller
 {
+
+    public function __construct(private readonly OtpRequestService $otpRequestService)
+    {
+
+    }
+
     /**
      * Display the login view.
      */
@@ -33,8 +37,16 @@ class AuthenticatedSessionController extends Controller
      */
     public function store(LoginRequest $request): ?RedirectResponse
     {
-        if($request->checkAuthenticate()) {
-            return redirect()->route('auth.otp.create', ['email' => $request->input('email')]);
+        if ($request->checkAuthenticate()) {
+            $user = User::where('email', $request->input('email'))->first();
+            $otpRequest = $this->otpRequestService->request($user, OtpTypeEnum::EMAIL);
+            if($otpRequest || $user->otp_number) {
+                return redirect()->route('auth.otp.create', ['email' => $request->input('email')]);
+            }else{
+                throw ValidationException::withMessages([
+                    'email' => 'Something went wrong while logging you in.',
+                ]);
+            }
         }
         return null;
     }
